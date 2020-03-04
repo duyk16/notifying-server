@@ -1,0 +1,14 @@
+{
+    "threads": 1,
+    "name": "Secure Rest API",
+
+    "auth_timeout": 5,
+
+    "database": {
+        "mongo_url": "mongodb://localhost:27017",
+        "redis_url": "localhost:27017",
+        "redis_user": "",
+        "redis_password": "",
+        "redis_db": 0
+    }
+}
