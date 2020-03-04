@@ -16,6 +16,7 @@ type Config struct {
 
 type Database struct {
 	MongoURL      string `json:"mongo_url"`
+	MongoDB       string `json:"mongo_db"`
 	RedisURL      string `json:"redis_url"`
 	RedisUser     string `json:"redis_user"`
 	RedisPassword string `json:"redis_password"`

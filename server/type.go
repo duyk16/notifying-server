@@ -3,6 +3,7 @@ package server
 type Message struct {
 	Type  string `json:"type"`
 	Token string `json:"token"`
+	ID    string `json:"id"`
 }
 
 type Request struct {

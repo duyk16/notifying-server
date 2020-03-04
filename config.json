@@ -6,6 +6,7 @@
 
     "database": {
         "mongo_url": "mongodb://localhost:27017",
+        "mongo_db": "notifying-service",
         "redis_url": "localhost:27017",
         "redis_user": "",
         "redis_password": "",
