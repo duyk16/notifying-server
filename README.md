@@ -1,5 +1,3 @@
-# NOTIFYING SERVICE
-
 ## Building on Linux
 
 Dependencies:
@@ -54,8 +52,8 @@ chmod +x notifying-service
 | | |
 |-|-|
 |Endpoint|Body|
-|/message|`{type: "ALL", message: "test message"}`|
-|/message|`{type: "Normal", users: ["userId1", "userId2"], message: "test message"}`|
+|/message|{type: "ALL", message: "test message"}|
+|/message|{type: "Normal", users: ["userId1", "userId2"], message: "test message"}|
 
 ### Using Redis PubSub
 
@@ -63,5 +61,5 @@ Message example
 | | |
 |-|-|
 |Description|Message|
-|Send message to All users|`{type: "ALL", message: "test message"}`|
-|Send message to Group users|`{type: "Normal", users: ["userId1", "userId2"], message: "test message"}`|
+|Send message to All users|{type: "ALL", message: "test message"}|
+|Send message to Group users|{type: "Normal", users: ["userId1", "userId2"], message: "test message"}|
