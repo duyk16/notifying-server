@@ -14,11 +14,11 @@ import (
 
 type Notification struct {
 	ID        primitive.ObjectID `json:"id" bson:"_id"`
-	UserId    string             `json:"userId"`
-	Message   string             `json:"message"`
-	IsRead    bool               `json:"isRead"`
-	IsSMS     bool               `json:"isSMS"`
-	CreatedAt time.Time          `json:"createdAt"`
+	UserId    string             `json:"userId" bson:"userId"`
+	Message   string             `json:"message" bson:"message"`
+	IsRead    bool               `json:"isRead" bson:"isRead"`
+	IsSMS     bool               `json:"isSMS" bson:"isSMS"`
+	CreatedAt time.Time          `json:"createdAt" bson:"createdAt"`
 }
 
 func SaveAllNotifications(users []string, message string) (err error) {
@@ -69,7 +69,16 @@ func ReadNotification(userId string, id primitive.ObjectID) (err error) {
 	return res.Err()
 }
 
-func GetNotifications(userId string) (err error, notifications []Notification) {
+func GetNotifications(userId string) (err error, notifications []Notification, unReadCount int64) {
+	unReadCount, err = storage.Notifications.CountDocuments(
+		context.Background(),
+		bson.M{"userId": userId},
+	)
+
+	if err != nil {
+		return err, notifications, unReadCount
+	}
+
 	cur, err := storage.Notifications.Find(
 		context.Background(),
 		bson.M{"userId": userId},
@@ -87,10 +96,10 @@ func GetNotifications(userId string) (err error, notifications []Notification) {
 		var notify Notification
 		err = cur.Decode(&notify)
 		if err != nil {
-			return
+			return err, notifications, unReadCount
 		}
 		notifications = append(notifications, notify)
 	}
 
-	return nil, notifications
+	return nil, notifications, unReadCount
 }
