@@ -30,6 +30,7 @@ chmod +x notifying-service
 {
     "threads": 1, // CPU usages
     "name": "Secure Rest API",
+    "port": "8000"
 
     "auth_timeout": 5, // Time waiting for socket auth of socket connections
 
