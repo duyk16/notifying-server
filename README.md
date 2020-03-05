@@ -3,7 +3,7 @@
 Dependencies:
 
   * go >= 1.10
-  * redis-server >= 2.8.0
+  * redis-server >= 5.0
 
 ```
 git clone https://github.com/duyk16/notifying-service.git
