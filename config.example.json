@@ -1,6 +1,7 @@
 {
     "threads": 1,
     "name": "Secure Rest API",
+    "port": "8000",
 
     "auth_timeout": 5,
 
