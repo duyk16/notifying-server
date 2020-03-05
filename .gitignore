@@ -1,2 +1,7 @@
+# for dev
 gin-bin
-build/
+
+# for product
+notifying-service
+
+config.json
