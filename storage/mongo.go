@@ -24,11 +24,18 @@ func ConnectMongo() {
 	}
 
 	// Connect the mongo client to the MongoDB server
-	ctx, _ := context.WithTimeout(context.Background(), 5*time.Second)
+	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+	defer cancel()
 	err = client.Connect(ctx)
+	if err != nil {
+		log.Printf("Could not connect to mongo db service: %v\n", err)
+		os.Exit(1)
+		return
+	}
 
 	// Ping MongoDB
-	ctx, _ = context.WithTimeout(context.Background(), 5*time.Second)
+	_, cancel = context.WithTimeout(context.Background(), 5*time.Second)
+	defer cancel()
 	if err = client.Ping(ctx, readpref.Primary()); err != nil {
 		log.Printf("Could not ping to mongo db service: %v\n", err)
 		os.Exit(1)

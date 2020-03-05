@@ -52,7 +52,7 @@ func SubscribeRedisChannel(channel string) {
 		ch := pubsub.Channel()
 		for msg := range ch {
 			var request Request
-			err := json.Unmarshal([]byte(msg.Payload), request)
+			err := json.Unmarshal([]byte(msg.Payload), &request)
 
 			if err != nil {
 				log.Printf("Fail to decode message\n Channel: %v\n Message: %v", msg.Channel, msg.Payload)
