@@ -14,8 +14,6 @@ import (
 	"github.com/duyk16/notifying-server/util"
 )
 
-var AllUsers []string // all users of service
-
 var upgrader = websocket.Upgrader{}
 var connections = make(map[*websocket.Conn]string)
 var clients = make(map[string]*websocket.Conn)
@@ -145,14 +143,10 @@ func SentMessage(ID string, message string) {
 	if ok {
 		conn.WriteJSON(message)
 	}
-
-	model.SaveNotification(ID, message)
 }
 
 func SentMessageToAll(message string) {
 	for _, conn := range clients {
 		conn.WriteJSON(message)
 	}
-
-	model.SaveAllNotifications(AllUsers, message)
 }

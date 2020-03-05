@@ -7,9 +7,11 @@
     "database": {
         "mongo_url": "mongodb://localhost:27017",
         "mongo_db": "notifying-service",
-        "redis_url": "localhost:27017",
-        "redis_user": "",
+        "redis_url": "localhost:6379",
         "redis_password": "",
-        "redis_db": 0
+        "redis_pool_size": 10,
+        "redis_db": 0,
+        "redis_channel": "TEST"
+
     }
 }

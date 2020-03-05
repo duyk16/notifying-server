@@ -17,7 +17,7 @@ import (
 var Database *mongo.Database
 var Notifications *mongo.Collection
 
-func Init() {
+func ConnectMongo() {
 	client, err := mongo.NewClient(options.Client().ApplyURI(config.ServerConfig.Database.MongoURL))
 	if err != nil {
 		log.Fatal(err)

@@ -18,9 +18,10 @@ type Database struct {
 	MongoURL      string `json:"mongo_url"`
 	MongoDB       string `json:"mongo_db"`
 	RedisURL      string `json:"redis_url"`
-	RedisUser     string `json:"redis_user"`
+	RedisPoolSize int    `json:"redis_pool_size"`
 	RedisPassword string `json:"redis_password"`
 	RedisDB       int    `json:"redis_db"`
+	RedisChannel  string `json:"redis_channel"`
 }
 
 var ServerConfig Config

@@ -10,6 +10,8 @@ import (
 	"github.com/duyk16/notifying-server/config"
 )
 
+var AllUsers []string // all users of service
+
 func Init() {
 	// Set max CPU cores
 	var threads = config.ServerConfig.Threads
@@ -29,6 +31,9 @@ func Init() {
 	r := mux.NewRouter()
 	r.HandleFunc("/ws", SocketHandler)
 	r.HandleFunc("/messages", MessageHandler).Methods("POST")
+
+	// Handler subcribe on redis
+	SubscribeRedisChannel(config.ServerConfig.Database.RedisChannel)
 
 	// Start the server on localhost port 8000 and log any errors
 	log.Println("http server started on :8000")
